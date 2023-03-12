@@ -30,6 +30,7 @@ var (
 )
 
 func init() {
+	color.NoColor = false
 	rand.Seed(time.Now().UnixNano())
 
 	flag.BoolVar(&considerOldYaku, "old", false, "允许古役")
