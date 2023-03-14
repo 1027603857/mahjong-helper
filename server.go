@@ -152,7 +152,7 @@ func (h *mjHandler) analysisMajsoul(c echo.Context) error {
 
 	h.majsoulMessageQueue <- data
 	answer := <-h.majsoulAnswerQueue
-	return c.NoContent(http.StatusOK)
+	return c.String(http.StatusOK, answer)
 }
 func (h *mjHandler) runAnalysisMajsoulMessageTask() {
 	if !debugMode {
