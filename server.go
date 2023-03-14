@@ -512,9 +512,9 @@ func runServer(isHTTPS bool, port int) (err error) {
 		tenhouMessageReceiver: tenhou.NewMessageReceiver(),
 		tenhouRoundData:       &tenhouRoundData{isRoundEnd: true},
 		majsoulMessageQueue:   make(chan []byte, 100),
+		majsoulAnswerQueue:    make(chan string, 1),
 		majsoulRoundData:      &majsoulRoundData{selfSeat: -1},
 		majsoulRecordMap:      map[string]*majsoulRecordBaseInfo{},
-		majsoulAnswerQueue:    make(chan string),
 	}
 	h.tenhouRoundData.roundData = newGame(h.tenhouRoundData)
 	h.majsoulRoundData.roundData = newGame(h.majsoulRoundData)
