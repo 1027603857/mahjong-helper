@@ -43,6 +43,7 @@ type mjHandler struct {
 	tenhouRoundData       *tenhouRoundData
 
 	majsoulMessageQueue chan []byte
+	majsoulAnswerQueue chan string
 	majsoulRoundData    *majsoulRoundData
 
 	majsoulRecordMap                map[string]*majsoulRecordBaseInfo
@@ -150,6 +151,7 @@ func (h *mjHandler) analysisMajsoul(c echo.Context) error {
 	}
 
 	h.majsoulMessageQueue <- data
+	answer := <-h.majsoulAnswerQueue
 	return c.NoContent(http.StatusOK)
 }
 func (h *mjHandler) runAnalysisMajsoulMessageTask() {
@@ -324,6 +326,7 @@ func (h *mjHandler) runAnalysisMajsoulMessageTask() {
 			// 其他：AI 分析
 			h._analysisMajsoulRoundData(d, originJSON)
 		}
+		h.majsoulAnswerQueue <- "当前数据处理完毕"
 	}
 }
 
@@ -511,6 +514,7 @@ func runServer(isHTTPS bool, port int) (err error) {
 		majsoulMessageQueue:   make(chan []byte, 100),
 		majsoulRoundData:      &majsoulRoundData{selfSeat: -1},
 		majsoulRecordMap:      map[string]*majsoulRecordBaseInfo{},
+		majsoulAnswerQueue:    make(chan string),
 	}
 	h.tenhouRoundData.roundData = newGame(h.tenhouRoundData)
 	h.majsoulRoundData.roundData = newGame(h.majsoulRoundData)
