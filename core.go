@@ -622,8 +622,8 @@ func (d *roundData) analysis() error {
 		info = info[:len(info)-1]
 		if len(info) != 0 {
 			color.HiYellow("宝牌指示牌是 " + info)
-			fmt.Println()
 		}
+		fmt.Println()
 		// TODO: 显示地和概率
 		return analysisPlayerWithRisk(playerInfo, nil)
 	case d.parser.IsOpen():
