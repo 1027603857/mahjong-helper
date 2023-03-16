@@ -618,7 +618,9 @@ func (d *roundData) analysis() error {
 		fmt.Println()
 		info := fmt.Sprintln(util.TilesToMahjongZHInterface(d.doraIndicators)...)
 		info = info[:len(info)-1]
-		color.HiYellow("宝牌指示牌是 " + info)
+		if info {
+			color.HiYellow("宝牌指示牌是 " + info)
+		}
 		fmt.Println()
 		// TODO: 显示地和概率
 		return analysisPlayerWithRisk(playerInfo, nil)
@@ -960,7 +962,11 @@ func (d *roundData) analysis() error {
 			}
 		}
 		for i, who := range whos {
-			fmt.Println(d.players[who].name, points[i])
+			if pints[i] {
+				fmt.Println(d.players[who].name, points[i])
+			} else {
+				fmt.Println(d.players[who].name)
+			}
 		}
 	case d.parser.IsRyuukyoku():
 		// TODO
