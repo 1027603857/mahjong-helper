@@ -528,6 +528,7 @@ func (d *roundData) analysis() error {
 
 	switch {
 	case d.parser.IsHuanSanZhang():
+		clearConsole()
 		fmt.Println("换三张成功！")
 		doraIndicators, inhands, outhands, numRedFives := d.parser.ParseHuanSanZhang()
 		d.doraIndicators = doraIndicators
