@@ -549,7 +549,9 @@ func (d *roundData) analysis() error {
 		fmt.Println()
 		info := fmt.Sprintln(util.TilesToMahjongZHInterface(d.doraIndicators)...)
 		info = info[:len(info)-1]
-		color.HiYellow("宝牌指示牌是 " + info)
+		if len(info) == 0 {
+			color.HiYellow("宝牌指示牌是 " + info)
+		}
 		fmt.Println()
 		return analysisPlayerWithRisk(playerInfo, nil)
 	case d.parser.IsInit():
@@ -618,9 +620,7 @@ func (d *roundData) analysis() error {
 		fmt.Println()
 		info := fmt.Sprintln(util.TilesToMahjongZHInterface(d.doraIndicators)...)
 		info = info[:len(info)-1]
-		if info {
-			color.HiYellow("宝牌指示牌是 " + info)
-		}
+		color.HiYellow("宝牌指示牌是 " + info)
 		fmt.Println()
 		// TODO: 显示地和概率
 		return analysisPlayerWithRisk(playerInfo, nil)
@@ -962,7 +962,7 @@ func (d *roundData) analysis() error {
 			}
 		}
 		for i, who := range whos {
-			if pints[i] {
+			if points[i] == 0 {
 				fmt.Println(d.players[who].name, points[i])
 			} else {
 				fmt.Println(d.players[who].name)
