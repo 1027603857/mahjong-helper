@@ -546,7 +546,6 @@ func (d *roundData) analysis() error {
 			d.inscLeftCounts(tile)
 		}
 		playerInfo := d.newModelPlayerInfo()
-		fmt.Println()
 		info := fmt.Sprintln(util.TilesToMahjongZHInterface(d.doraIndicators)...)
 		info = info[:len(info)-1]
 		if len(info) != 0 {
