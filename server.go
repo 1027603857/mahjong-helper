@@ -512,7 +512,7 @@ func runServer(isHTTPS bool, port int) (err error) {
 		tenhouMessageReceiver: tenhou.NewMessageReceiver(),
 		tenhouRoundData:       &tenhouRoundData{isRoundEnd: true},
 		majsoulMessageQueue:   make(chan []byte, 100),
-		majsoulAnswerQueue:    make(chan string, 1),
+		majsoulAnswerQueue:    make(chan string, 3),
 		majsoulRoundData:      &majsoulRoundData{selfSeat: -1},
 		majsoulRecordMap:      map[string]*majsoulRecordBaseInfo{},
 	}
