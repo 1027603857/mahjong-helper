@@ -546,12 +546,13 @@ func (d *roundData) analysis() error {
 			d.inscLeftCounts(tile)
 		}
 		playerInfo := d.newModelPlayerInfo()
+		fmt.Println()
 		info := fmt.Sprintln(util.TilesToMahjongZHInterface(d.doraIndicators)...)
 		info = info[:len(info)-1]
 		if len(info) != 0 {
 			color.HiYellow("宝牌指示牌是 " + info)
+			fmt.Println()
 		}
-		fmt.Println()
 		return analysisPlayerWithRisk(playerInfo, nil)
 	case d.parser.IsInit():
 		// round 开始/重连
@@ -621,8 +622,8 @@ func (d *roundData) analysis() error {
 		info = info[:len(info)-1]
 		if len(info) != 0 {
 			color.HiYellow("宝牌指示牌是 " + info)
+			fmt.Println()
 		}
-		fmt.Println()
 		// TODO: 显示地和概率
 		return analysisPlayerWithRisk(playerInfo, nil)
 	case d.parser.IsOpen():
